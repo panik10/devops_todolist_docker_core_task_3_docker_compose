@@ -9,7 +9,7 @@ docker compose up
 ```
 Add -d flag to run it detached.
 
-To stop the container you shold execute following command from the same folder:
+To stop the container you should execute following command from the same folder:
 
 ```
 docker compose down

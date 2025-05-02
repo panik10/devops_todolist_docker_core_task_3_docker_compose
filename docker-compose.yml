@@ -2,20 +2,6 @@ networks:
   todoapp-net:
     driver: bridge
 services:
-  todo-list-app:
-    image: todo-app:1.0
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    environment:
-      - PYTHONUNBUFFERED=1
-    networks:
-      - todoapp-net
-    depends_on:
-      - mysql
-    restart: unless-stopped
   mysql:
     image: mysql:1.0
     build:
@@ -33,6 +19,19 @@ services:
       - MYSQL_USER=app_user
     networks:
       - todoapp-net
+  todo-list-app:
+    image: todo-app:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - todoapp-net
+    depends_on:
+      - mysql
+    restart: unless-stopped
 volumes:
   db-data:
-    
